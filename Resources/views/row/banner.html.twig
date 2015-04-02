@@ -1,0 +1,36 @@
+<div class="content-view-row content-type-banner{% if delimiter is not empty %} delimiter{% endif %}">
+    <div class="background" id="content-{{ content.contentInfo.id }}"></div>
+    <div class="container">
+        <article class="hero-unit text-right">
+            {% if position == 0 %}<h1>{% else %}<h2>{% endif %}
+                {{ ez_render_field( content, 'title' ) }}
+            {% if position == 0 %}</h1>{% else %}</h2>{% endif %}
+
+            {% if not ez_is_field_empty( content, 'description' ) %}
+                <div class="attribute-long">
+                    {{ ez_render_field( content, 'description' ) }}
+                </div>
+            {% endif %}
+        </article>
+    </div>
+</div>
+
+
+<style>@media (max-width: 767px) {
+        #content-68 {
+            opacity:0.7 !important;
+            background:url(
+
+            '{{ asset( ez_image_alias( content.getField( 'background_image' ), content.versionInfo, 'original' ).uri ) }}') no-repeat center center
+
+        }
+    }
+    @media (min-width: 768px) {
+        #content-68 {
+            background:url(
+
+            '{{ asset( ez_image_alias( content.getField( 'background_image' ), content.versionInfo, 'original' ).uri ) }}') no-repeat center center
+
+        }
+    }
+</style>

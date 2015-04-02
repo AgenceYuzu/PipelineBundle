@@ -1,0 +1,18 @@
+<section class="content-view-row content-type-page-section-1-column {{ background }}{% if delimiter is not empty %} delimiter{% endif %}"
+         id="{{ content.contentInfo.name|replace({" " : "-"}) }}">
+    <div class="container">
+        <div class="row">
+            {% if position == 0 %}<h1 class="text-center">{% else %}<h2 class="text-center">{% endif %}
+                {{ ez_render_field( content, 'title' ) }}
+            {% if position == 0 %}</h1>{% else %}</h2>{% endif %}
+
+            {% if not ez_is_field_empty( content, 'description' ) %}
+                <div class="attribute-long">
+                    <div class="col-md-12">
+                        {{ ez_render_field( content, 'description' ) }}
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</section>

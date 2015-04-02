@@ -1,0 +1,15 @@
+<div class="content-view-portfolio">
+    <div class="content-type-image">
+        <div class="attribute-image">
+            {% if not ez_is_field_empty( content, 'image' ) %}
+                    <img class="img-responsive" src="{{ asset( ez_image_alias( content.getField( 'image' ), content.versionInfo, 'original' ).uri ) }}">
+
+                    {% if not ez_is_field_empty( content, 'caption' ) %}
+                        <div class="attribute-caption">
+                            {{ ez_render_field( content, 'caption' ) }}
+                        </div>
+                    {% endif %}
+            {% endif %}
+        </div>
+    </div>
+</div>

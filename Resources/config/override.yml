@@ -1,0 +1,60 @@
+siteaccess:
+    groups:
+        pipeline_frontend_group:
+            - pipeline
+
+system:
+    pipeline_frontend_group:
+        location_view:
+            full:
+                home:
+                    template: "YuzuPipelineBundle:full:home.html.twig"
+                    controller: "YuzuPipelineBundle:Pipeline:subItems"
+                    match:
+                        Identifier\ContentType: "pipeline_theme"
+            row:
+                banner:
+                    template: "YuzuPipelineBundle:row:banner.html.twig"
+                    match:
+                        Identifier\ContentType: "banner"
+                page_section_1_column:
+                    template: "YuzuPipelineBundle:row:page_section_1_column.html.twig"
+                    match:
+                        Identifier\ContentType: "page_section_1_column"
+                page_section_2_columns:
+                    template: "YuzuPipelineBundle:row:page_section_2_columns.html.twig"
+                    match:
+                        Identifier\ContentType: "page_section_2_columns"
+                page_section_3_columns:
+                    template: "YuzuPipelineBundle:row:page_section_3_columns.html.twig"
+                    match:
+                        Identifier\ContentType: "page_section_3_columns"
+                page_section_4_columns:
+                    template: "YuzuPipelineBundle:row:page_section_4_columns.html.twig"
+                    match:
+                        Identifier\ContentType: "page_section_4_columns"
+                portfolio:
+                    template: "YuzuPipelineBundle:row:portfolio.html.twig"
+                    match:
+                        Identifier\ContentType: "portfolio"
+                contact_form:
+                    controller: "YuzuPipelineBundle:Pipeline:showFeedbackForm"
+                    template: "YuzuPipelineBundle:row:feedback_form.html.twig"
+                    match:
+                        Identifier\ContentType: "contact_form"
+            portfolio:
+                image:
+                    template: "YuzuPipelineBundle:portfolio:image.html.twig"
+                    match:
+                        Identifier\ContentType: "image"
+        content_view:
+            embed:
+                image:
+                    template: "YuzuPipelineBundle:embed:image.html.twig"
+                    match:
+                        Identifier\ContentType: "image"
+
+        fieldtypes:
+            ezxml:
+                custom_tags:
+                    - { path: %kernel.root_dir%/../src/Yuzu/PipelineBundle/Resources/xsl/embed.xsl, priority: 10 }

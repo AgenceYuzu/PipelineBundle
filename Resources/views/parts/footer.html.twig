@@ -1,0 +1,41 @@
+<footer class="container">
+    <div class="row">
+        <div class="col-md-12 text-center">
+            {{ ez_render_field( content, 'footer' ) }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 text-center">
+            {% if not ez_is_field_empty( content, "twitter_account" ) %}
+                <a href="https://twitter.com/{{ ez_field_value( content, 'twitter_account' ) }}">
+                    <i class="fa fa-twitter"></i>
+                </a>
+            {% endif %}
+            {% if not ez_is_field_empty( content, "facebook_account" ) %}
+                <a href="https://www.facebook.com/{{ ez_field_value( content, 'facebook_account' ) }}">
+                    <i class="fa fa-facebook"></i>
+                </a>
+            {% endif %}
+            {% if not ez_is_field_empty( content, "pinterest_account" ) %}
+                <a href="https://www.pinterest.com/{{ ez_field_value( content, 'pinterest_account' ) }}">
+                    <i class="fa fa-pinterest"></i>
+                </a>
+            {% endif %}
+            {% if not ez_is_field_empty( content, "googleplus_account" ) %}
+                <a href="https://plus.google.com/+{{ ez_field_value( content, 'googleplus_account' ) }}">
+                    <i class="fa fa-google-plus"></i>
+                </a>
+            {% endif %}
+            {% if not ez_is_field_empty( content, "flickr_account" ) %}
+                <a href="https://www.flickr.com/photos/{{ ez_field_value( content, 'flickr_account' ) }}">
+                    <i class="fa fa-flickr"></i>
+                </a>
+            {% endif %}
+        </div>
+    </div>
+</footer>
+
+
+{% if not ez_is_field_empty( content, "javascript_code" ) %}
+    {{ ez_field_value( content, 'javascript_code' ) }}
+{% endif %}

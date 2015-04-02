@@ -1,0 +1,53 @@
+{% if not ez_is_field_empty( content, 'column_1_width' ) %}
+    {% set column_1_size = ez_field_value( content, 'column_1_width' ) %}
+{% else %}
+    {% set column_1_size = '3' %}
+{% endif %}
+
+{% if not ez_is_field_empty( content, 'column_2_width' ) %}
+    {% set column_2_size = ez_field_value( content, 'column_2_width' ) %}
+{% else %}
+    {% set column_2_size = '3' %}
+{% endif %}
+
+{% if not ez_is_field_empty( content, 'column_3_width' ) %}
+    {% set column_3_size = ez_field_value( content, 'column_3_width' ) %}
+{% else %}
+    {% set column_3_size = '3' %}
+{% endif %}
+
+{% if not ez_is_field_empty( content, 'column_4_width' ) %}
+    {% set column_4_size = ez_field_value( content, 'column_4_width' ) %}
+{% else %}
+    {% set column_4_size = '3' %}
+{% endif %}
+
+<section class="content-view-row content-type-page-section-4-columns {{ background }} {% if delimiter is not empty %}delimiter{% endif %}"
+         id="{{ content.contentInfo.name|replace({" " : "-"}) }}">
+    <div class="container">
+        <div class="row">
+            {% if position == 0 %}<h1 class="text-center">{% else %}<h2 class="text-center">{% endif %}
+                {{ ez_render_field( content, 'title' ) }}
+            {% if position == 0 %}</h1>{% else %}</h2>{% endif %}
+
+            {% if not ez_is_field_empty( content, 'description' ) %}
+                <div class="attribute-long">
+                    {{ ez_render_field( content, 'description' ) }}
+                </div>
+            {% endif %}
+
+            <div class="col-md-{{ column_1_size }}">
+                {{ ez_render_field( content, 'column_1' ) }}
+            </div>
+            <div class="col-md-{{ column_2_size }}">
+                {{ ez_render_field( content, 'column_2' ) }}
+            </div>
+            <div class="col-md-{{ column_3_size }}">
+                {{ ez_render_field( content, 'column_3' ) }}
+            </div>
+            <div class="col-md-{{ column_4_size }}">
+                {{ ez_render_field( content, 'column_4' ) }}
+            </div>
+        </div>
+    </div>
+</section>

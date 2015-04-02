@@ -1,0 +1,22 @@
+{% extends "YuzuPipelineBundle::pagelayout.html.twig" %}
+
+{% block content %}
+
+    {% if items is not empty %}
+        {% for item in items %}
+            {% if loop.index0 is divisible by(2) %}
+                {% set background = 'bglight' %}
+            {% else %}
+                {% set background = 'bgdark' %}
+            {% endif %}
+
+            {% if not loop.first %}
+                {% set delimiter = "delimiter" %}
+            {% else %}
+                {% set delimiter = '' %}
+            {% endif %}
+            {{ render_esi( controller( 'ez_content:viewLocation', { 'locationId': item.contentInfo.mainLocationId, 'viewType': 'row', "params": { "background": background, "delimiter": delimiter, "position": loop.index0} } ) ) }}
+        {% endfor %}
+    {% endif %}
+
+{% endblock %}

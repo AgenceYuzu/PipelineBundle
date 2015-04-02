@@ -1,0 +1,16 @@
+<div class="content-view-children">
+    <div class="container">
+        <div class="row">
+            {% if items is not empty %}
+                {% for item in items %}
+                    <div class="col-md-4">
+                        {{ render_esi( controller( 'ez_content:viewLocation', { 'locationId': item.contentInfo.mainLocationId, 'viewType': 'portfolio'} ) ) }}
+                    </div>
+                    {% if loop.index is divisible by(3) %}
+                        <div class="clearfix"></div>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+</div>

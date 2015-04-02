@@ -1,0 +1,4 @@
+services:
+    yuzu_pipeline.feedback_form_provider:
+        class: Yuzu\PipelineBundle\FeedbackForm\SimpleFeedbackFormProvider
+        arguments: [@form.factory]

@@ -1,0 +1,20 @@
+<header>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <div class="navbar-brand">
+                    {% if not ez_is_field_empty( content, "logo" ) %}
+                        <img src="{{ asset( ez_image_alias( content.getField( 'logo' ), content.versionInfo, 'original' ).uri ) }}" style="max-height: 70px">
+                    {% else %}
+                        <img src="{{ asset('bundles/yuzupipeline/images/pipeline-logo.png') }}" alt="Pipeline Theme for eZ Publish" />
+                    {% endif %}
+                </div>
+            </div>
+            <ul class="nav navbar-nav navbar-right">
+                {% for top_menu_item in top_menu_items %}
+                    <li><a href="#{{top_menu_item.name|replace(' ', '-')}}">{{ top_menu_item.name }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </nav>
+</header>

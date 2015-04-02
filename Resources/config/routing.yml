@@ -1,0 +1,5 @@
+yuzu_pipeline_contact:
+    pattern:  /contact
+    defaults: { _controller: YuzuPipelineBundle:Pipeline:feedbackForm }
+    requirements:
+        _method:  POST

@@ -1,0 +1,85 @@
+{% if onlyMarkup %}
+    <div class="content-view-row content-type-feedback-form{% if delimiter is not empty %} delimiter{% endif %}" id="{{ content.contentInfo.name|replace({" " : "-"}) }}">
+        <div class="container">
+            <div class="row">
+                {% if position == 0 %}<h1 class="text-center">{% else %}<h2 class="text-center">{% endif %}
+                    {{ ez_render_field( content, 'title' ) }}
+                {% if position == 0 %}</h1>{% else %}</h2>{% endif %}
+
+                <div class="col-md-8">
+                    {% if not ez_is_field_empty( content, 'description' ) %}
+                        <div class="attribute-long">
+                            {{ ez_render_field( content, 'description' ) }}
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="col-md-4">
+
+                    {% for flashMessage in app.session.flashbag.get('notice') %}
+                        <p class="form-success">
+                            {{ flashMessage }}
+                        </p>
+                    {% endfor %}
+
+                    <form id="feedback_form" novalidate="novalidate">
+                        <div class="row">
+                            {{ form_errors( form ) }}
+                        </div>
+                        <p>
+                            {{ form_widget( form.name, { 'attr': {'class': 'form-control', 'placeholder': 'Name'}} ) }}
+                        </p>
+                        <p>
+                            {{ form_widget( form.email, { 'attr': {'class': 'form-control', 'placeholder': 'Email'}} ) }}
+                        </p>
+                        <p>
+                            {{ form_widget( form.message, { 'attr': {'class': 'form-control', 'placeholder': 'Your Message'}} ) }}
+                        </p>
+                        <p>
+                            {{ form_widget( form.save, { 'label': "Send", 'attr': { 'class': 'btn btn-primary' } } ) }}
+                        </p>
+                        {{ form_rest (form) }}
+
+                        <input id="form_recipient" hidden="hidden" value="{{ ez_field_value( content, 'recipient') }}" name="recipient">
+
+
+                    </form>
+                </div>
+            </div>
+        </div>
+        {{ ez_render_field( content, 'location', {'parameters': {'width': '100%', 'height': '400px', 'showMap': true, 'showInfo': false}}) }}
+    </div>
+{% endif %}
+
+{% if onlyJavascript %}
+    <script type="text/javascript">
+        $(document).ready(function()
+        {
+            $("#feedback_form").validate({
+                submitHandler: function(form) {
+                    $( "#form_save").text( "  Processing...");
+                    $.ajax(
+                            {
+                                url: "{{ path( "yuzu_pipeline_contact" ) }}",
+                                headers: {
+                                    'X-CSRF-TOKEN': $("#form_ezxform_token").val
+                                },
+                                data: $("#feedback_form").serialize(),
+                                type: "POST"
+                            }).done( function ( data )
+                            {
+                                if ( data.messagesent )
+                                {
+                                    $( "#form_save" ).addClass( 'disabled').addClass( 'btn-info' );
+                                    $( "#form_save" ).prop( 'disabled', true );
+                                    $( "#form_save").text( "Thanks! Message sent to our team.");
+                                }
+                                else
+                                {
+                                    $( "#form_save").text( "Ooops, try again please" );
+                                }
+                            });
+                }
+            });
+        });
+    </script>
+{%  endif %}

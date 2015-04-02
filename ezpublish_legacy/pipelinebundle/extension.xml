@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<software>
+    <metadata>
+        <name>Yuzu Pipeline Bundle</name>
+        <version>1.0</version>
+        <copyright>Copyright (C) 2015 Agence Yuzu</copyright>
+        <license>GNU General Public License</license>
+        <info_url>http://github.com/agenceyuzu</info_url>
+    </metadata>
+</software>
