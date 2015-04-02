@@ -1,0 +1,19 @@
+{
+    "name": "yuzu/pipelinebundle",
+    "description": "One Page Theme for eZ Publish 5 and eZ Platform",
+    "license": "GPL-3.0",
+    "authors": [
+        {
+          "name": "Agence Yuzu"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=5.3.3",
+        "ezsystems/ezpublish-kernel": "~5.4@rc"
+    },
+    "autoload": {
+        "psr-0": {"Yuzu\\PipelineBundle": ""}
+    },
+    "target-dir": "Yuzu/PipelineBundle"
+}
