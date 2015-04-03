@@ -17,7 +17,7 @@
 
 
 <style>@media (max-width: 767px) {
-        #content-68 {
+        #content-{{ content.contentInfo.id }} {
             opacity:0.7 !important;
             background:url(
 
@@ -26,7 +26,7 @@
         }
     }
     @media (min-width: 768px) {
-        #content-68 {
+        #content-{{ content.contentInfo.id }} {
             background:url(
 
             '{{ asset( ez_image_alias( content.getField( 'background_image' ), content.versionInfo, 'original' ).uri ) }}') no-repeat center center
