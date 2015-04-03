@@ -57,4 +57,4 @@ system:
         fieldtypes:
             ezxml:
                 custom_tags:
-                    - { path: %kernel.root_dir%/../src/Yuzu/PipelineBundle/Resources/xsl/embed.xsl, priority: 10 }
+                    - { path: %kernel.root_dir%/../vendor/yuzu/pipelinebundle/Yuzu/PipelineBundle/Resources/xsl/embed.xsl, priority: 10 }
