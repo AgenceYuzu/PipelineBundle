@@ -10,3 +10,11 @@ The PipelineBundle is a simple one page theme for eZ Publish 5
 
 ![Pipeline-Theme](https://raw.github.com/AgenceYuzu/PipelineBundle/master/Resources/doc/images/Pipeline-Theme-for-eZ-Publish.png)
 
+
+# Install
+
+Follow the [installation instructions](Resources/doc/INSTALL.md)
+
+
+# License
+[License](LICENSE)
