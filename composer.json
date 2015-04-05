@@ -10,7 +10,7 @@
     "minimum-stability": "dev",
     "require": {
         "php": ">=5.3.3",
-        "ezsystems/ezpublish-kernel": "~5.4@rc"
+        "ezsystems/ezpublish-kernel": "*"
     },
     "autoload": {
         "psr-0": {"Yuzu\\PipelineBundle": ""}
