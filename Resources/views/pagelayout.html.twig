@@ -21,9 +21,12 @@
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
 
-
-        <link rel="stylesheet" href="{{ asset( "bundles/yuzupipeline/css/flat-ui.css" ) }}">
-        <link rel="stylesheet" href="{{ asset( "bundles/yuzupipeline/css/pipeline.css" ) }}">
+        {% stylesheets filter='cssrewrite'
+            'bundles/yuzupipeline/css/flat-ui.css'
+            'bundles/yuzupipeline/css/pipeline.css'
+        %}
+        <link rel="stylesheet" type="text/css" href="{{ asset_url }}"/>
+        {% endstylesheets %}
 
     {% endblock %}
 </head>
