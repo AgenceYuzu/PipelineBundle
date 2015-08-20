@@ -37,5 +37,7 @@
 
 
 {% if not ez_is_field_empty( content, "javascript_code" ) %}
-    {{ ez_field_value( content, 'javascript_code' ) }}
+    {% autoescape false %}
+        {{ ez_field_value( content, 'javascript_code' ) }}
+    {% endautoescape %}
 {% endif %}
