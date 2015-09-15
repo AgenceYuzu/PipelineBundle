@@ -3,7 +3,7 @@
         {% set image_alias = ez_image_alias( field, versionInfo, parameters.alias|default( 'original' ) ) %}
         {% set image_alt = parameters.alt|default( field.value.alternativeText ) %}
         {% if image_alias %}
-            <img class="{{ parameters.class }}" src="{{ asset( image_alias.uri ) }}"{% if imageAlias.width is defined %} width="{{ image_alias.width }}"{% endif %}{% if imageAlias.height is defined %} height="{{ image_alias.height }}"{% endif %}{% if image_alt is not empty %} alt="{{ image_alt }}"{% endif %} />
+            <img class="{{ parameters.class }}" src="{{ asset( image_alias.uri ) }}"{% if imageAlias.width is defined %} width="{{ image_alias.width }}"{% endif %}{% if imageAlias.height is defined %} height="{{ image_alias.height }}"{% endif %} {% if image_alt is not empty %} alt="{{ image_alt }}"{% endif %}{% if parameters.class == "img-responsive" %}style="max-height: {{ field.value.height }}px; max-width: {{ field.value.width }}px; display: table-cell;" {% endif %}/>
         {% endif %}
     {% endif %}
 {% endblock %}
