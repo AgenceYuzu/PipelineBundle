@@ -1,26 +1,19 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: admin
- * Date: 09/03/15
- * Time: 10:57
+ * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
-
 namespace Yuzu\PipelineBundle\FeedbackForm;
-
 
 use Symfony\Component\Form\FormFactory;
 use Yuzu\PipelineBundle\Entity\Feedback;
 
-class SimpleFeedbackFormProvider implements FeedbackFormProvider {
-
-    /**
-     * @var FormFactory
-     */
+class SimpleFeedbackFormProvider implements FeedbackFormProvider
+{
+    /** @var \Symfony\Component\Form\FormFactory */
     private $factory;
 
-    public function __construct(FormFactory $factory ){
-
+    public function __construct(FormFactory $factory)
+    {
         $this->factory = $factory;
     }
 

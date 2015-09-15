@@ -1,23 +1,17 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: admin
- * Date: 09/03/15
- * Time: 10:54
+ * @license For full copyright and license information view LICENSE file distributed with this source code.
  */
-
 namespace Yuzu\PipelineBundle\FeedbackForm;
-
 
 use Symfony\Component\Form\Form;
 use Yuzu\PipelineBundle\Entity\Feedback;
 
-interface FeedbackFormProvider {
-
+interface FeedbackFormProvider
+{
     /**
      * @param Feedback $feedback
      * @return Form
      */
     public function getFeedbackForm(Feedback $feedback);
-
 }
