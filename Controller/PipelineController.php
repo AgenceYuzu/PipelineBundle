@@ -48,7 +48,7 @@ class PipelineController extends Controller
             $locationId,
             'full',
             true,
-            ['items' => $treeItems]
+            array('items' => $treeItems)
         );
     }
 
