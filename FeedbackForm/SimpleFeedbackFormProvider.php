@@ -12,6 +12,9 @@ class SimpleFeedbackFormProvider implements FeedbackFormProvider
     /** @var \Symfony\Component\Form\FormFactory */
     private $factory;
 
+    /**
+     * @param \Symfony\Component\Form\FormFactory $factory
+     */
     public function __construct(FormFactory $factory)
     {
         $this->factory = $factory;

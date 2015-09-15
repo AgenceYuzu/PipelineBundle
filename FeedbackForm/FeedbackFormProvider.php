@@ -4,14 +4,14 @@
  */
 namespace Yuzu\PipelineBundle\FeedbackForm;
 
-use Symfony\Component\Form\Form;
 use Yuzu\PipelineBundle\Entity\Feedback;
 
 interface FeedbackFormProvider
 {
     /**
-     * @param Feedback $feedback
-     * @return Form
+     * @param \Yuzu\PipelineBundle\Entity\Feedback $feedback
+     *
+     * @return \Symfony\Component\Form\Form
      */
     public function getFeedbackForm(Feedback $feedback);
 }

@@ -6,9 +6,7 @@ namespace Yuzu\PipelineBundle\Entity;
 
 class Feedback
 {
-    protected $name;
-    protected $email;
-    protected $message;
+    protected $name, $email, $message;
 
     public function getName()
     {
