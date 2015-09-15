@@ -1,7 +1,7 @@
 {
     "name": "yuzu/pipelinebundle",
     "description": "One Page Theme for eZ Publish 5 and eZ Platform",
-    "license": "GPL-3.0",
+    "license": "GPL-2.0",
     "authors": [
         {
           "name": "Agence Yuzu"
