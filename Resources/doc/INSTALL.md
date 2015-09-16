@@ -102,18 +102,23 @@ assetic:
     bundles:        [ YuzuPipelineBundle ]
 ```
  
-- Dump assetic
- 
-```bash
-$> php ezpublish/console assets:install --symlink web
-$> php ezpublish/console assetic:dump --env=dev web
-$> php ezpublish/console assetic:dump --env=prod web
-```
- 
 - Clear cache
 
 ```bash
-$> php ezpublish/console cache:clear
+$> php ezpublish/console cache:clear --env=prod
 ```
+
+- Install additional assets
+
+```bash
+$> php ezpublish/console assets:install --symlink
+```
+
+- Dump assetic
+ 
+```bash
+$> php ezpublish/console assetic:dump --env=prod
+```
+ 
 
 - Enjoy!
