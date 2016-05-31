@@ -10,12 +10,16 @@ use eZ\Publish\API\Repository\Values\Content\Query;
 use eZ\Publish\API\Repository\Values\Content\Query\Criterion;
 use eZ\Publish\API\Repository\Values\Content\Query\SortClause;
 use Symfony\Component\HttpFoundation\Request;
-use Yuzu\PipelineBundle\Entity\Feedback;
 use Symfony\Component\HttpFoundation\Response;
-use Yuzu\PipelineBundle\FeedbackForm\FeedbackFormProvider;
+use Yuzu\PipelineBundle\Entity\Feedback;
 
 class PipelineController extends Controller
 {
+    /**
+     * @param int $locationId
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function subItemsAction($locationId)
     {
         $criteria = array(
@@ -52,20 +56,27 @@ class PipelineController extends Controller
         );
     }
 
+    /**
+     * @param string $template
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function pipelineSettingsAction($template = null)
     {
+        $contentService = $this->getRepository()->getContentService();
+
         $root = $this->getRootLocation();
-        $rootContent = $this->getRepository()->getContentService()->loadContent($root->contentInfo->id);
+        $rootContent = $contentService->loadContent($root->contentInfo->id);
 
         // Get the current language
         $languages = $this->getConfigResolver()->getParameter('languages');
-        $current_language = $languages[0];
+        $currentLanguage = $languages[0];
 
         // Get top menu entries
-        $topMenuContentIds = $rootContent->fields['top_menu'][$current_language]->destinationContentIds;
+        $topMenuContentIds = $rootContent->fields['top_menu'][$currentLanguage]->destinationContentIds;
         $topMenuContentNamesArray = array();
         foreach ($topMenuContentIds as $topMenuContentId) {
-            $topMenuContent = $this->getRepository()->getContentService()->loadContentInfo($topMenuContentId);
+            $topMenuContent = $contentService->loadContentInfo($topMenuContentId);
             $topMenuContentNamesArray[] = $topMenuContent;
         }
 
@@ -78,6 +89,11 @@ class PipelineController extends Controller
         );
     }
 
+    /**
+     * @param int $locationId
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function portfolioItemsAction($locationId)
     {
         $criteria = array(
@@ -110,6 +126,14 @@ class PipelineController extends Controller
         );
     }
 
+    /**
+     * @param int $locationId
+     * @param string $viewType
+     * @param bool|false $layout
+     * @param array $params
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function showFeedbackFormAction($locationId, $viewType, $layout = false, array $params = array())
     {
         $feedback = new Feedback();
@@ -124,16 +148,23 @@ class PipelineController extends Controller
         );
     }
 
-    public function feedbackFormAction()
+    /**
+     * @param \Symfony\Component\HttpFoundation\Request
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function feedbackFormAction(Request $request)
     {
         $feedback = new Feedback();
 
         $form = $this->getFeedbackFormProvider()->getFeedbackForm($feedback);
 
-        $request = $this->get('request');
-
         if ($request->isMethod('POST')) {
             $form->handleRequest($request);
+
+            $return = json_encode(
+                array('messagesent' => false)
+            );
 
             if ($form->isValid()) {
                 $message = \Swift_Message::newInstance();
@@ -155,10 +186,6 @@ class PipelineController extends Controller
                 $return = json_encode(
                     array('messagesent' => true)
                 );
-            } else {
-                $return = json_encode(
-                    array('messagesent' => false)
-                );
             }
 
             return new Response(
@@ -170,7 +197,7 @@ class PipelineController extends Controller
     }
 
     /**
-     * @return FeedbackFormProvider
+     * @return \Yuzu\PipelineBundle\FeedbackForm\FeedbackFormProvider
      */
     private function getFeedbackFormProvider()
     {
